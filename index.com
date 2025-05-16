@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HackShield - 개인정보 유출 확인</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #0a0a23;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+    }
+    nav a {
+      color: white;
+      margin-left: 1.5rem;
+      text-decoration: none;
+    }
+    .main {
+      text-align: center;
+      padding: 3rem 1rem;
+    }
+    .search-box {
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 2rem;
+      background-color: white;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    .search-box input[type="text"] {
+      width: 80%;
+      padding: 0.7rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .search-box button {
+      padding: 0.7rem 1.2rem;
+      background-color: #0a0a23;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      margin-top: 1rem;
+      cursor: pointer;
+    }
+    .result-box {
+      margin-top: 2rem;
+      padding: 1rem;
+      background-color: #fff3f3;
+      color: #b30000;
+      font-weight: bold;
+      border-radius: 10px;
+      display: none;
+    }
+    .news-section {
+      max-width: 900px;
+      margin: 3rem auto;
+    }
+    .news-section h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+    .news-card {
+      background-color: white;
+      padding: 1rem;
+      margin: 1rem auto;
+      border-radius: 10px;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+    }
+    .guide-section {
+      max-width: 900px;
+      margin: 3rem auto;
+      padding: 1rem;
+      background-color: #e6f7ff;
+      border-radius: 10px;
+    }
+    .guide-section h2 {
+      text-align: center;
+    }
+    footer {
+      background-color: #222;
+      color: white;
+      text-align: center;
+      padding: 1rem;
+      margin-top: 4rem;
+    }
+  </style>
+  <script>
+    function checkLeak() {
+      const input = document.getElementById("userInput").value;
+      const resultBox = document.getElementById("resultBox");
+
+      if (input.includes("@") || input.length >= 9) {
+        resultBox.innerHTML = "❌ 유출된 기록이 있습니다! 즉시 비밀번호를 변경하고 2차 인증을 설정하세요.";
+        resultBox.style.backgroundColor = "#fff3f3";
+        resultBox.style.color = "#b30000";
+      } else {
+        resultBox.innerHTML = "✅ 유출된 기록이 없습니다. 하지만 주기적인 보안 점검을 권장합니다.";
+        resultBox.style.backgroundColor = "#f0fff0";
+        resultBox.style.color = "#006400";
+      }
+
+      resultBox.style.display = "block";
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <h1>HackShield</h1>
+    <nav>
+      <a href="#">유출 확인</a>
+      <a href="#">뉴스</a>
+      <a href="#guide">조치 가이드</a>
+    </nav>
+  </header>
+
+  <div class="main">
+    <div class="search-box">
+      <h2>내 정보 유출 여부 확인</h2>
+      <input type="text" id="userInput" placeholder="이메일 또는 전화번호 입력">
+      <br>
+      <button onclick="checkLeak()">검색하기</button>
+      <div class="result-box" id="resultBox"></div>
+    </div>
+
+    <div class="news-section">
+      <h2>최근 유출 뉴스</h2>
+      <div class="news-card">
+        <h3>○○게임, 3천만명 개인정보 유출</h3>
+        <p>2025년 5월 기준, 사용자 정보가 외부로 유출된 것으로 확인됨...</p>
+      </div>
+      <div class="news-card">
+        <h3>△△쇼핑몰 해킹 시도 발생</h3>
+        <p>해커가 로그인 정보를 수집하려 했으며, 비밀번호 변경 권고됨...</p>
+      </div>
+    </div>
+
+    <div class="guide-section" id="guide">
+      <h2>유출 시 후속 조치 가이드</h2>
+      <ul>
+        <li>1️⃣ 모든 계정의 비밀번호를 즉시 변경하세요.</li>
+        <li>2️⃣ 가능한 모든 서비스에 2단계 인증을 설정하세요.</li>
+        <li>3️⃣ 동일한 비밀번호를 사용하는 다른 서비스들도 점검하세요.</li>
+        <li>4️⃣ 금융 계정/이메일 계정에 이상 징후가 없는지 확인하세요.</li>
+        <li>5️⃣ 의심스러운 메일/문자/링크를 클릭하지 마세요.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    © 2025 HackShield | 개인정보 처리방침 | Contact: support@hackshield.kr
+  </footer>
+</body>
+</html>
